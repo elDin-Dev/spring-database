@@ -1,8 +1,17 @@
 package com.sandin.learning.springdatabase.entity;
 
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
+
 import java.util.Date;
 
+
+@Component
 public class Person {
+
+    public Person() {
+    }
 
     private int id;
     private String name;
@@ -37,7 +46,28 @@ public class Person {
         return birthDate;
     }
 
+    public Person(int id, String name, String location, Date birthDate) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.location = location;
+        this.birthDate = birthDate;
+    }
+
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "\n" +
+                "Person{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", location='" + location + '\'' +
+                ", birthDate=" + birthDate +
+                '}'
+        );
     }
 }
