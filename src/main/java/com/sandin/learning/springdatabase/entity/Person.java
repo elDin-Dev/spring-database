@@ -1,15 +1,13 @@
 package com.sandin.learning.springdatabase.entity;
 
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.Date;
 
 
 @Entity
-@Table(name = "PERSON")
 public class Person {
 
     public Person() {
