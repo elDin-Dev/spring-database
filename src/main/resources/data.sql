@@ -17,4 +17,4 @@ VALUES (10002, 'David', 'MAD', sysdate());
 
 INSERT INTO PERSON
  (ID, NAME, LOCATION, BIRTH_DATE  )
-VALUES (10003, 'Vicente', 'NYC', sysdate());
+VALUES (10003, 'Vicente', 'BCN', sysdate());
