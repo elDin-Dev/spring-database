@@ -2,14 +2,14 @@ package com.sandin.learning.springdatabase.jdbc;
 
 import com.sandin.learning.springdatabase.entity.Person;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 @Repository
 public class PersonJdbcDao {
@@ -20,7 +20,7 @@ public class PersonJdbcDao {
     public List<Person> findAll() {
 
         return jdbcTemplate.query("SELECT * FROM PERSON",
-                new BeanPropertyRowMapper<Person>(Person.class));
+                new PersonRowMapper());
         
     }
 
@@ -29,7 +29,7 @@ public class PersonJdbcDao {
         return jdbcTemplate.queryForObject(
                 "SELECT * FROM PERSON WHERE id=?",
                 new Object[] {id},
-                new BeanPropertyRowMapper<Person>(Person.class)
+                new PersonRowMapper()
                 );
    }
 
@@ -39,7 +39,7 @@ public class PersonJdbcDao {
         return jdbcTemplate.query(
                 "SELECT * FROM PERSON WHERE LOCATION=?",
                 new Object[] {location},
-                new BeanPropertyRowMapper<Person>(Person.class)
+                new PersonRowMapper()
         );
     }
 
@@ -65,6 +65,19 @@ public class PersonJdbcDao {
 
         return jdbcTemplate.update(
                 "UPDATE PERSON SET NAME=?, LOCATION=?, BIRTH_DATE=? WHERE ID =?",
-                new Object[] {person.getName(), person.getLocation(), person.getBirthDate().getTime(), person.getId()});
+                new Object[] {person.getName(), person.getLocation(), person.getBirthDate(), person.getId()});
+    }
+
+    class PersonRowMapper implements RowMapper<Person> {
+
+        @Override
+        public Person mapRow(ResultSet rs, int rowNum) throws SQLException {
+            Person person = new Person();
+            person.setId(rs.getInt("id"));
+            person.setName(rs.getString("name"));
+            person.setLocation(rs.getString("location"));
+            person.setBirthDate(rs.getTimestamp("birth_date"));
+            return person;
+        }
     }
 }
