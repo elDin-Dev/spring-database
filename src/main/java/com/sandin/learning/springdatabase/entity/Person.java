@@ -4,18 +4,28 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.*;
 import java.util.Date;
 
 
-@Component
+@Entity
+@Table(name = "PERSON")
 public class Person {
 
     public Person() {
     }
 
+    @Id
+    @GeneratedValue
     private int id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "location")
     private String location;
+
+    @Column(name = "birth_date")
     private Date birthDate;
 
     public int getId() {
@@ -24,6 +34,13 @@ public class Person {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Person(String name, String location, Date birthDate) {
+        super();
+        this.name = name;
+        this.location = location;
+        this.birthDate = birthDate;
     }
 
     public String getName() {
