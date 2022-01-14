@@ -26,29 +26,29 @@ public class SpringJpaApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		logger.info("User with id 10002 : {}", repository.findByID(10002));
-
-		/*
-		logger.info("All users : {}", repository.findAll());
-
-
-
-		logger.info("Users in BCN : {}", repository.findByLocation("BCN"));
-
-		logger.info("Deleting user with id 10002. Rows:{}", repository.deleteById(10002));
-
-		logger.info("Inserting a new user with id 10004. Rows affected: {}",
+		logger.info("Inserting a new user with. Rows affected: {}",
 				repository.insert(new Person(
-						10004,
 						"Rubén",
 						"MAD",
 						new Date()))
 		);
 
-		logger.info("Updating a Person. Rows affected: {}", repository.update(repository.findByID(10004)));
+		logger.info("Inserting a new user with. Rows affected: {}",
+				repository.insert(new Person(
+						"Alex",
+						"BCN",
+						new Date()))
+		);
 
-		logger.info("All users : {}", repository.findAll());
+		logger.info("Inserting a new user with. Rows affected: {}",
+				repository.insert(new Person(
+						"Vicente",
+						"BCN",
+						new Date()))
+		);
 
-		 */
+
+		logger.info("Searching a user with id 1 : {}", repository.findByID(1));
+
 	}
 }

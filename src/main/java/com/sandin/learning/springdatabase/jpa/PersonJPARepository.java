@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 @Repository
 public class PersonJPARepository {
@@ -18,4 +19,19 @@ public class PersonJPARepository {
 
         return entityManager.find(Person.class, id);
     }
+
+    @Transactional
+    public Person update(Person person ){
+        return entityManager.merge(person);
+
+    }
+
+    @Transactional
+    public Person insert(Person person ){
+        return entityManager.merge(person);
+
+    }
+
+
 }
+
