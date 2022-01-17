@@ -1,13 +1,14 @@
 package com.sandin.learning.springdatabase.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 
 @Entity
+@NamedQuery(
+        name = "find_all_person",
+        query = "select p from Person p"
+)
 public class Person {
 
     public Person() {
